@@ -2,6 +2,8 @@ require 'rubygems'
 require 'forgery'
 require 'ruby-debug'
 
+LONGEST_METHOD = 41
+
 klasses = Forgery.constants.map do |sym|
   ("Forgery::" + sym.to_s).constantize
 end.
@@ -21,10 +23,10 @@ klasses.each do |klass|
     examples = examples[0...90].sub(/\|\|\|[^|~]*$/, '').gsub(/\|\|\|/, ', ').sub(/~~~/, '')
     examples += (examples.length >= 90 ? '...'  : '')
     
-    puts "#{klass.name}.#{m.to_s}".ljust(50) + " # => #{examples}"
+    puts "#{klass.name}.#{m.to_s}".ljust(LONGEST_METHOD + 2) + " # => #{examples}"
     
     if meth.arity != 0
-      puts "#{klass.name}.#{m.to_s}(\n  \n" + ")".ljust(50) + " # => #{examples}"
+      puts "#{klass.name}.#{m.to_s}(\n  \n" + ")".ljust(LONGEST_METHOD + 2) + " # => #{examples}"
     end
   end
   
