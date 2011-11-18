@@ -1,4 +1,3 @@
-require 'rubygems'
 require 'forgery'
 require 'ruby-debug'
 
