@@ -19,7 +19,7 @@ klasses.each do |klass|
   k_methods.each do |m|
     meth = klass.method(m)
     
-    examples = (1..3).map { meth.call.inspect rescue "???" }.uniq.join('|||') + '~~~'
+    examples = 3.times.map { meth.call.inspect rescue "???" }.uniq.join('|||') + '~~~'
     examples = examples[0...90].sub(/\|\|\|[^|~]*$/, '').gsub(/\|\|\|/, ', ').sub(/~~~/, '')
     examples += (examples.length >= 90 ? '...'  : '')
     
