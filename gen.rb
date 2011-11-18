@@ -1,10 +1,11 @@
 require 'forgery'
+require 'active_support'
 require 'ruby-debug'
 
 LONGEST_METHOD = 41
 
 klasses = Forgery.constants.map do |sym|
-  ("Forgery::" + sym.to_s).constantize
+  ActiveSupport::Inflector.constantize("Forgery::" + sym.to_s)
 end.
 reject do |klass|
   !klass.is_a?(Class) || !klass.ancestors.include?(Forgery)
